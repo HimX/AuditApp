@@ -19,7 +19,7 @@ class HandleInertiaRequests extends Middleware
      * Determines the current asset version.
      *
      * @see https://inertiajs.com/asset-versioning
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return string|null
      */
     public function version(Request $request)
@@ -31,7 +31,7 @@ class HandleInertiaRequests extends Middleware
      * Defines the props that are shared by default.
      *
      * @see https://inertiajs.com/shared-data
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return array
      */
     public function share(Request $request)
@@ -39,7 +39,7 @@ class HandleInertiaRequests extends Middleware
         return array_merge(parent::share($request), [
             'auth' => function () use ($request) {
                 return [
-                    'user' => $request->user() ? : null,
+                    'user' => $request->user() ?: null,
                 ];
             },
             'flash' => function () use ($request) {
@@ -48,6 +48,14 @@ class HandleInertiaRequests extends Middleware
                     'error' => $request->session()->get('error'),
                 ];
             },
+            'locale' => function () {
+                return app()->getLocale();
+            },
+            'language' => function () {
+                return translations(
+                    resource_path('lang/' . app()->getLocale() . '.json')
+                );
+            }
         ]);
     }
 }

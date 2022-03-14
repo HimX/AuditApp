@@ -1,0 +1,18 @@
+{
+    "audit_plan": {
+        "new": "New plan"
+    },
+    "audit_plan_type": {
+        "new": "New plan type",
+        "form": {
+            "title": "Plan type details",
+            "description": "",
+            "fields": {
+                "name": "Plan type name",
+                "description": "Plan type description",
+                "default_flow_key": "Methodology",
+                "state": "State"
+            }
+        }
+    }
+}

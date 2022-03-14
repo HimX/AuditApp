@@ -25,12 +25,12 @@
 
                                 <jet-nav-link :href="route('audit_plans.create')"
                                               :active="route().current('audit_plans.create')">
-                                    Nuevo plan
+                                    {{ __('audit_plan.new') }}
                                 </jet-nav-link>
 
                                 <jet-nav-link :href="route('audit_plan_types.create')"
                                               :active="route().current('audit_plan_types.create')">
-                                    Nuevo tipo de plan
+                                    {{ __('audit_plan_type.new') }}
                                 </jet-nav-link>
                             </div>
                         </div>

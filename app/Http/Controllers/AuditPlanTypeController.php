@@ -41,18 +41,27 @@ class AuditPlanTypeController extends Controller
      * Creates a new audit plan type
      *
      * @param StoreAuditPlanTypeRequest $request
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function store(StoreAuditPlanTypeRequest $request)
     {
-        $auditPlanType = AuditPlanType::create($request->all());
-        redirect()->route('audit_plan_type.update', ['planType' => $auditPlanType]);
+        $auditPlanType = AuditPlanType::create($request->only([
+            'name', 'description', 'default_flow_key', 'state'
+        ]));
+        return redirect()->route('audit_plan_types.edit', ['audit_plan_type' => $auditPlanType]);
     }
 
-    public function show(AuditPlanType $planType)
+    public function show(AuditPlanType $audit_plan_types)
     {
         return Inertia::render('AuditPlanTypes/Show', [
-            'audit_plan_type' => $planType
+            'audit_plan_type' => $audit_plan_types
+        ]);
+    }
+
+    public function edit(AuditPlanType $audit_plan_type)
+    {
+        return Inertia::render('AuditPlanTypes/Edit', [
+            'audit_plan_type' => $audit_plan_type
         ]);
     }
 }

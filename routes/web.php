@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuditPlanController;
 use App\Http\Controllers\AuditPlanTypeController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PdfController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -44,4 +45,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('audit_plan_types', AuditPlanTypeController::class);
 
     Route::resource('audit_plans', AuditPlanController::class);
+
+    Route::get('/pdf', [PdfController::class, 'show']);
+
+    Route::get('/pdf_download', [PdfController::class, 'download']);
 });

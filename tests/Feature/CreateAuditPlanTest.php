@@ -5,7 +5,7 @@ namespace Tests\Feature;
 use App\Models\AuditPlan;
 use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Inertia\Testing\Assert;
+use Inertia\Testing\AssertableInertia as Assert;
 use Tests\TestCase;
 
 class CreateAuditPlanTest extends TestCase
@@ -16,11 +16,11 @@ class CreateAuditPlanTest extends TestCase
     {
         $this->actingAs($user = User::factory()->withPersonalTeam()->create());
 
-        $response = $this->get('/audit_plan/create');
+        $response = $this->get('/audit_plans/create');
 
         $response->assertInertia(function (Assert $page) {
             return $page
-                ->component('AuditPlan/Create');
+                ->component('AuditPlans/Create');
         });
     }
 
